@@ -1,0 +1,50 @@
+# Visual Studio files
+.vscode/
+.vs/
+*.suo
+*.user
+*.sln.docstates
+
+# User-specific files and directories
+*.suo
+*.user
+*.userprefs
+*.suo
+*.suo
+*.user
+*.sln.docstates
+
+# Compiled binary files
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+*.user
+
+# User-specific files
+*.suo
+*.user
+*.userprefs
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
