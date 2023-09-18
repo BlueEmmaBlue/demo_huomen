@@ -1,20 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient; // 引入MySQL连接器的命名空间
+using System.Data;
 
 namespace demo_huomen
 {
     public partial class LoginForm : Form
     {
+        MySqlConnection connection;
         public LoginForm()
         {
             InitializeComponent();
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            // 读取上次密码
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.Username))
+            {
+                txtUsername.Text = Properties.Settings.Default.Username;
+                txtPassword.Text = Properties.Settings.Default.Password;
+                chkRememberPassword.Checked = true;
+            }
+
+            // 连接数据库
+            string connectionString = "Server=shiweiyan-surface;Database=huomen;Uid=root;Pwd=123;";
+            connection = new MySqlConnection(connectionString);
+
+            try
+            {
+                connection.Open();
+                MessageBox.Show("连接成功！");
+                // 连接成功后可以执行数据库操作
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("连接失败: " + ex.Message);
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -107,16 +136,6 @@ namespace demo_huomen
         private void btnCancel_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-            if(!string.IsNullOrEmpty(Properties.Settings.Default.Username))
-            {
-                txtUsername.Text = Properties.Settings.Default.Username;
-                txtPassword.Text = Properties.Settings.Default.Password;
-                chkRememberPassword.Checked = true;
-            }
         }
     }
 }
