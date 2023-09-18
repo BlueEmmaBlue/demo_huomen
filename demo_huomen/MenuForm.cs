@@ -12,9 +12,15 @@ namespace demo_huomen
 {
     public partial class MenuForm : Form
     {
-        public MenuForm()
+        public MenuForm(string username)
         {
             InitializeComponent();
+            // 使用DateTime.Now获取当前时间
+            DateTime currentTime = DateTime.Now;
+
+            // 将时间格式化为字符串，例如 "yyyy-MM-dd HH:mm:ss"
+            string formattedTime = currentTime.ToString("yyyy-MM-dd HH:mm:ss");
+            lblUsername.Text = "当前用户：" + username + " " + formattedTime;
         }
 
         private void MenuForm_Load(object sender, EventArgs e)
@@ -94,6 +100,37 @@ namespace demo_huomen
         }
 
         private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            // 创建注册窗口的实例
+            RegisterForm registrationForm = new RegisterForm();
+
+            // 显示注册窗口作为对话框
+            DialogResult result = registrationForm.ShowDialog();
+
+            // 检查对话框返回的结果
+            if (result == DialogResult.OK)
+            {
+                // 注册成功，你可以在这里执行相应的操作
+            }
+            else
+            {
+                // 注册窗口被取消或关闭
+                registrationForm.Close();
+            }
+        }
+
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

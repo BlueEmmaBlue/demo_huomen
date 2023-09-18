@@ -77,9 +77,9 @@ namespace demo_huomen
             if (IsValidLogin(username, password))
             {
                 // 登录成功，跳转到主窗体
-                MenuForm menuForm = new MenuForm();
+                MenuForm menuForm = new MenuForm(username);
                 menuForm.Show();
-                this.Close(); // 隐藏登录窗体，或者可以使用 this.Close() 来关闭登录窗体
+                this.Hide(); // 隐藏登录窗体，或者可以使用 this.Close() 来关闭登录窗体
             }
             else
             {
