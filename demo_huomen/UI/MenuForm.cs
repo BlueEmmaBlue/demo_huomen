@@ -7,14 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace demo_huomen
 {
     public partial class MenuForm : Form
     {
+        //private readonly CookieHandler _cookieHandler;
+
         public MenuForm(string username)
         {
             InitializeComponent();
+            //_cookieHandler = cookieHandler;
             // 使用DateTime.Now获取当前时间
             DateTime currentTime = DateTime.Now;
 
@@ -23,9 +28,30 @@ namespace demo_huomen
             lblUsername.Text = "当前用户：" + username + " " + formattedTime;
         }
 
-        private void MenuForm_Load(object sender, EventArgs e)
+        private async Task getUserList()
         {
+            string apiUrl = "http://localhost:8080/device-test/szUser/list";
+            dgvUserList.AutoGenerateColumns = true;
+            var cookieContainer = SharedCookieContainer.Instance.CookieContainer;
+            HttpClient client = new HttpClient(new HttpClientHandler
+            {
+                CookieContainer = cookieContainer
+            });
+            HttpResponseMessage response = await client.GetAsync(apiUrl);
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonContent = await response.Content.ReadAsStringAsync();
+                // 解析JSON字符串为.NET对象，例如List<T>
+                Response<User[]> apiResponse = JsonConvert.DeserializeObject<Response<User[]>>(jsonContent);
+                //System.Diagnostics.Debug.WriteLine(json);
+                dgvUserList.DataSource = apiResponse.data;
+            }
+        }
 
+
+        private async void MenuForm_Load(object sender, EventArgs e)
+        {
+            await getUserList();
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
