@@ -43,6 +43,11 @@
             this.dgvUserList = new System.Windows.Forms.DataGridView();
             this.lblUsername = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accountRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -183,6 +188,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnDel);
+            this.tabPage2.Controls.Add(this.btnEdit);
             this.tabPage2.Controls.Add(this.dgvUserList);
             this.tabPage2.Controls.Add(this.lblUsername);
             this.tabPage2.Controls.Add(this.btnAdd);
@@ -199,10 +206,14 @@
             // dgvUserList
             // 
             this.dgvUserList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUserList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.username,
+            this.password,
+            this.accountRole});
             this.dgvUserList.Location = new System.Drawing.Point(53, 162);
             this.dgvUserList.Name = "dgvUserList";
             this.dgvUserList.RowTemplate.Height = 27;
-            this.dgvUserList.Size = new System.Drawing.Size(725, 421);
+            this.dgvUserList.Size = new System.Drawing.Size(750, 470);
             this.dgvUserList.TabIndex = 2;
             this.dgvUserList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -225,6 +236,46 @@
             this.btnAdd.Text = "添加用户";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(825, 162);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(149, 69);
+            this.btnEdit.TabIndex = 3;
+            this.btnEdit.Text = "修改密码";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.button7_Click_1);
+            // 
+            // btnDel
+            // 
+            this.btnDel.Location = new System.Drawing.Point(825, 249);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(149, 69);
+            this.btnDel.TabIndex = 4;
+            this.btnDel.Text = "删除用户";
+            this.btnDel.UseVisualStyleBackColor = true;
+            // 
+            // username
+            // 
+            this.username.HeaderText = "用户名";
+            this.username.Name = "username";
+            this.username.ReadOnly = true;
+            this.username.Width = 250;
+            // 
+            // password
+            // 
+            this.password.HeaderText = "密码";
+            this.password.Name = "password";
+            this.password.ReadOnly = true;
+            this.password.Width = 250;
+            // 
+            // accountRole
+            // 
+            this.accountRole.HeaderText = "角色";
+            this.accountRole.Name = "accountRole";
+            this.accountRole.ReadOnly = true;
+            this.accountRole.Width = 250;
             // 
             // MenuForm
             // 
@@ -262,5 +313,10 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.DataGridView dgvUserList;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn username;
+        private System.Windows.Forms.DataGridViewTextBoxColumn password;
+        private System.Windows.Forms.DataGridViewTextBoxColumn accountRole;
     }
 }
