@@ -15,10 +15,12 @@ namespace demo_huomen
     public partial class MenuForm : Form
     {
         //private readonly CookieHandler _cookieHandler;
+        public string usrname;
 
         public MenuForm(string username)
         {
             InitializeComponent();
+            usrname = username;
             //_cookieHandler = cookieHandler;
             // 使用DateTime.Now获取当前时间
             DateTime currentTime = DateTime.Now;
@@ -51,7 +53,7 @@ namespace demo_huomen
 
         private async void MenuForm_Load(object sender, EventArgs e)
         {
-            await getUserList();
+            //await getUserList();
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -122,7 +124,12 @@ namespace demo_huomen
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            // 登录成功，跳转到数据窗体
+            var dataForm = new DataForm(usrname);
+            //MenuForm menuForm = new MenuForm(username, );
+            this.Hide(); // 隐藏登录窗体，或者可以使用 this.Close() 来关闭登录窗体
+            dataForm.Show();
+            //this.Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -167,6 +174,11 @@ namespace demo_huomen
         }
 
         private void button7_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
         {
 
         }

@@ -1,6 +1,6 @@
 ﻿namespace demo_huomen.UI
 {
-    partial class TestForm
+    public partial class TestForm
     {
         /// <summary>
         /// Required designer variable.

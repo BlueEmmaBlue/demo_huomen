@@ -1,6 +1,18 @@
-﻿namespace demo_huomen.UI
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Net.Http;
+using Newtonsoft.Json;
+
+namespace demo_huomen
 {
-    partial class DataForm
+    public partial class DataForm
     {
         /// <summary>
         /// Required designer variable.
@@ -62,6 +74,7 @@
             this.open_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.plane_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -325,11 +338,22 @@
             this.time.Name = "time";
             this.time.ReadOnly = true;
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(821, 12);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 23;
+            this.btnBack.Text = "返回";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // DataForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 721);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label8);
@@ -394,5 +418,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn open_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn plane_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn time;
+        private Button btnBack;
     }
 }

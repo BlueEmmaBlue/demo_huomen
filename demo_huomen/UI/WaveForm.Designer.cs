@@ -1,6 +1,6 @@
 ﻿namespace demo_huomen.UI
 {
-    partial class WaveForm
+    public partial class WaveForm
     {
         /// <summary>
         /// Required designer variable.

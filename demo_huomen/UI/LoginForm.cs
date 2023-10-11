@@ -153,53 +153,66 @@ namespace demo_huomen
                 Properties.Settings.Default.Save();
             }
 
-            HttpClientHandler handler = new HttpClientHandler();
-
-            using (HttpClient client = new HttpClient(handler))
+            if (IsValidLogin(username, password))
             {
-                try
-                {
-                    var loginData = new
-                    {
-                        username = username,
-                        password = password
-                    };
-                    string jsonLoginData = Newtonsoft.Json.JsonConvert.SerializeObject(loginData);
-                    string apiUrl = "http://localhost:8080/device-test/api/auth/login";
-                    HttpResponseMessage response = await client.PostAsync(apiUrl, new StringContent(jsonLoginData, System.Text.Encoding.UTF8, "application/json"));
-                    // 检查响应是否成功
-                    if (response.IsSuccessStatusCode)
-                    {
-                        // 读取响应内容
-                        string responseContent = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine("登录成功，响应内容：" + responseContent);
-
-                        // 将Cookie添加到共享的CookieContainer中
-                        IEnumerable<string> cookies = response.Headers.GetValues("Set-Cookie");
-                        var cookieContainer = SharedCookieContainer.Instance.CookieContainer;
-                        foreach (var cookieHeaderValue in cookies)
-                        {
-                            cookieContainer.SetCookies(new Uri("http://localhost:8080/device-test/api"), cookieHeaderValue);
-                        }
-                        // 登录成功，跳转到主窗体
-                        var menuForm = new MenuForm(username);
-                        //MenuForm menuForm = new MenuForm(username, );
-                        menuForm.Show();
-                        this.Hide(); // 隐藏登录窗体，或者可以使用 this.Close() 来关闭登录窗体
-                    }
-                    else
-                    {
-                        //Console.WriteLine("登录失败，状态码：" + response.StatusCode);
-                        // 登录失败，弹出密码错误的消息框
-                        MessageBox.Show("用户名或密码错误，请重试。", "登录失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //Console.WriteLine("发生异常：" + ex.Message);
-                    MessageBox.Show("发生异常：", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                // 登录成功，跳转到主窗体
+                var menuForm = new MenuForm(username);
+                //MenuForm menuForm = new MenuForm(username, );
+                menuForm.Show();
+                this.Hide(); // 隐藏登录窗体，或者可以使用 this.Close() 来关闭登录窗体
+            }else
+            {
+                MessageBox.Show("登录错误");
             }
+            
+
+            //HttpClientHandler handler = new HttpClientHandler();
+
+            //using (HttpClient client = new HttpClient(handler))
+            //{
+            //    try
+            //    {
+            //        var loginData = new
+            //        {
+            //            username = username,
+            //            password = password
+            //        };
+            //        string jsonLoginData = Newtonsoft.Json.JsonConvert.SerializeObject(loginData);
+            //        string apiUrl = "http://localhost:8080/device-test/api/auth/login";
+            //        HttpResponseMessage response = await client.PostAsync(apiUrl, new StringContent(jsonLoginData, System.Text.Encoding.UTF8, "application/json"));
+            //        // 检查响应是否成功
+            //        if (response.IsSuccessStatusCode)
+            //        {
+            //            // 读取响应内容
+            //            string responseContent = await response.Content.ReadAsStringAsync();
+            //            Console.WriteLine("登录成功，响应内容：" + responseContent);
+
+            //            // 将Cookie添加到共享的CookieContainer中
+            //            IEnumerable<string> cookies = response.Headers.GetValues("Set-Cookie");
+            //            var cookieContainer = SharedCookieContainer.Instance.CookieContainer;
+            //            foreach (var cookieHeaderValue in cookies)
+            //            {
+            //                cookieContainer.SetCookies(new Uri("http://localhost:8080/device-test/api"), cookieHeaderValue);
+            //            }
+            //            // 登录成功，跳转到主窗体
+            //            var menuForm = new MenuForm(username);
+            //            //MenuForm menuForm = new MenuForm(username, );
+            //            menuForm.Show();
+            //            this.Hide(); // 隐藏登录窗体，或者可以使用 this.Close() 来关闭登录窗体
+            //        }
+            //        else
+            //        {
+            //            //Console.WriteLine("登录失败，状态码：" + response.StatusCode);
+            //            // 登录失败，弹出密码错误的消息框
+            //            MessageBox.Show("用户名或密码错误，请重试。", "登录失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        //Console.WriteLine("发生异常：" + ex.Message);
+            //        MessageBox.Show("发生异常：", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
         }
         private bool IsValidLogin(string username, string password)
         {

@@ -1,6 +1,6 @@
 ﻿namespace demo_huomen
 {
-    partial class RegisterForm
+    public partial class RegisterForm
     {
         /// <summary>
         /// Required designer variable.
